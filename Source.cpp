@@ -67,11 +67,17 @@ int main()
 
 	if (std::any_of(team1.begin(), team1.end(), alivePred))
 	{
-		std::cout << "Team 1 won!\n";
+		std::cout << "Team 1 won!\n\n";
 	}
 	else
 	{
-		std::cout << "Team 2 won!\n";
+		std::cout << "Team 2 won!\n\n";
+	}
+
+	for (int i = 0; i < team1.size(); i++)
+	{
+		delete team1[i];
+		delete team2[i];
 	}
 
 	while (!_kbhit());

@@ -36,6 +36,7 @@ public:
 	void DealDamage(MemeFighter& other, int damage) const;
 	bool IsAlive() const;
 	virtual void Tick();
+	virtual ~MemeFighter() = default;
 
 protected:
 	std::string name;

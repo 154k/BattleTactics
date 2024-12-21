@@ -9,6 +9,7 @@ public:
 	std::string GetOldName() const;
 	bool SpecialAttack(MemeFighter& other) override;
 	void Tick() override;
+	~MemeFrog() override;
 
 private:
 	std::string oldName;
@@ -21,4 +22,5 @@ class MemeStoner : public MemeFighter
 public:
 	MemeStoner(const std::string name);
 	bool SpecialAttack(MemeFighter& other) override;
+	~MemeStoner() override;
 };

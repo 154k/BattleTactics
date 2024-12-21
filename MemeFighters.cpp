@@ -5,7 +5,10 @@
 MemeFrog::MemeFrog(const std::string name)
 	:
 	MemeFighter(name, 110, 18, 8),
-	oldName(name){}
+	oldName(name)
+{
+	std::cout << GetName() << " enters the ring!\n";
+}
 
 std::string MemeFrog::GetOldName() const
 {
@@ -48,11 +51,19 @@ void MemeFrog::Tick()
 
 	MemeFighter::Tick();
 }
+
+MemeFrog::~MemeFrog()
+{
+	std::cout << "MemeFrog left the ring!\n";
+}
 	
 
 MemeStoner::MemeStoner(const std::string name)
 	:
-	MemeFighter(name, 250, 12, 3){}
+	MemeFighter(name, 250, 12, 3)
+{
+	std::cout << GetName() << " enters the ring!\n";
+}
 
 bool MemeStoner::SpecialAttack(MemeFighter& other)
 {
@@ -64,4 +75,9 @@ bool MemeStoner::SpecialAttack(MemeFighter& other)
 		return true;
 	}
 	return false;
+}
+
+MemeStoner::~MemeStoner()
+{
+	std::cout << "MemeStoner left the ring!\n";
 }
