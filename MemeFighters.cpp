@@ -1,10 +1,12 @@
 #include "MemeFighters.h"
 #include <iostream>
+#include "Dice.h"
+#include "Attribute.h"
 
 
-MemeFrog::MemeFrog(const std::string name)
+MemeFrog::MemeFrog(const std::string name, Weapon* pWeapon)
 	:
-	MemeFighter(name, 110, 18, 8),
+	MemeFighter(name, 110, 18, 8, pWeapon),
 	oldName(name)
 {
 	std::cout << GetName() << " enters the ring!\n";
@@ -20,9 +22,9 @@ bool MemeFrog::SpecialAttack(MemeFighter& other)
 	if (Roll() > 5 && !super)
 	{
 		name = "Super " + name;
-		hp += 15;
-		power += 5;
-		speed += 3;
+		attr.hp += 15;
+		attr.power += 5;
+		attr.speed += 3;
 		super = true;
 		std::cout << GetOldName() << " went Super mode!\n";
 		return true;
@@ -35,7 +37,7 @@ void MemeFrog::Tick()
 	if (super)
 	{
 		int damage = 3;
-		hp -= damage;
+		attr.hp -= damage;
 		superTurns += 1;
 		std::cout << GetName() << " lost " << damage << " hp from Super mode usage!\n";
 	}
@@ -45,7 +47,7 @@ void MemeFrog::Tick()
 		super = false;
 		superTurns = 0;
 		name = GetOldName();
-		power -= 3;
+		attr.power -= 3;
 		std::cout << GetOldName() << " is no longer in Super Mode, take this chance!\n";
 	}
 
@@ -58,9 +60,9 @@ MemeFrog::~MemeFrog()
 }
 	
 
-MemeStoner::MemeStoner(const std::string name)
+MemeStoner::MemeStoner(const std::string name, Weapon* pWeapon)
 	:
-	MemeFighter(name, 250, 12, 3)
+	MemeFighter(name, 250, 12, 3, pWeapon)
 {
 	std::cout << GetName() << " enters the ring!\n";
 }

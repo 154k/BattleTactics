@@ -5,7 +5,7 @@
 class MemeFrog : public MemeFighter
 {
 public:
-	MemeFrog(const std::string name);
+	MemeFrog(const std::string name, Weapon* pWeapon);
 	std::string GetOldName() const;
 	bool SpecialAttack(MemeFighter& other) override;
 	void Tick() override;
@@ -20,7 +20,7 @@ private:
 class MemeStoner : public MemeFighter
 {
 public:
-	MemeStoner(const std::string name);
+	MemeStoner(const std::string name, Weapon* pWeapon);
 	bool SpecialAttack(MemeFighter& other) override;
 	~MemeStoner() override;
 };

@@ -1,6 +1,8 @@
 #include <conio.h>
 #include <iostream>
 #include "MemeFighters.h"
+#include "Weapon.h"
+#include <cstdlib>
 
 void Fight(MemeFighter& f1, MemeFighter& f2)
 {
@@ -25,14 +27,14 @@ void Fight(MemeFighter& f1, MemeFighter& f2)
 int main()
 {
 	std::vector<MemeFighter*> team1 = {
-		new MemeFrog("Dank Boi"),
-		new MemeStoner("Illuminarti"),
-		new MemeFrog("Scumbag Steve")};
+		new MemeFrog("Dank Boi", new Bat),
+		new MemeStoner("Illuminarti", new Fist),
+		new MemeFrog("Scumbag Steve", new Knife)};
 
 	std::vector<MemeFighter*> team2 = {
-		new MemeFrog("Doritos"),
-		new MemeStoner("Bloody Mary"),
-		new MemeFrog("Donald Trump") };
+		new MemeFrog("Doritos", new Knife),
+		new MemeStoner("Bloody Mary", new Knife),
+		new MemeFrog("Donald Trump", new Fist)};
 
 	std::cout << "\n=============== BATTLE START! ==================\n\n";
 
@@ -63,6 +65,7 @@ int main()
 
 		std::cout << "\n================================================\n\n";
 		_getch();
+		system("cls");
 	}
 
 	if (std::any_of(team1.begin(), team1.end(), alivePred))

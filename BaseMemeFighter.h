@@ -1,49 +1,33 @@
 #pragma once
 #include <string>
-#include <random>
+#include "Weapon.h"
+#include "Dice.h"
+#include "Attribute.h"
+
+
 
 class MemeFighter
 {
 protected:
-	class Dice
-	{
-	public:
-		int Roll(int n)
-		{
-			int total = 0;
-			for (int i = 0; i < n; i++)
-			{
-				total += dDist(rng);
-			}
-			return total;
-		}
-
-	private:
-		std::random_device rd;
-		std::mt19937 rng{ rd() };
-		std::uniform_int_distribution<int> dDist{ 1, 6 };
-	};
-
-protected:
-	MemeFighter(const std::string& name, int hp, int power, int speed);
-	int Roll(int n = 1);
+	MemeFighter(const std::string& name, int hp, int power, int speed, Weapon* pWeapon);
+	int Roll(int n = 1) const;
 
 public:
 	std::string GetName() const;
 	int GetInitiative();
 	void Attack(MemeFighter& other);
 	virtual bool SpecialAttack(MemeFighter& other) = 0;
-	void DealDamage(MemeFighter& other, int damage) const;
+	void DealDamage(MemeFighter& other, int damage);
+	void StealWeapon(MemeFighter& other);
 	bool IsAlive() const;
+	bool HasWeapon() const;
 	virtual void Tick();
-	virtual ~MemeFighter() = default;
+	virtual ~MemeFighter();
 
 protected:
 	std::string name;
-	int hp;
-	int power;
-	int speed;
+	Attribute attr;
 	bool alive = true;
-	Dice d6;
-
+	Weapon* pWeapon = nullptr;
+	mutable Dice d6;
 };
